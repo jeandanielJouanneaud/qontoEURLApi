@@ -4,7 +4,7 @@ use to retrieve EURL transactions. See :how much TVA you need to send back, how 
 
 Add your slug, iban and secret into the transaction.go file 
 
-Usage :
+Usage :  
 	-h : help => see this usage  
 	-v : Verbose => print all details  
 	-e : export mode => print all details in export mode (without braces)  
