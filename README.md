@@ -12,5 +12,8 @@ Usage :
 	-r amount : add remuneration  
 	-d : print process details  
   
-  
-  
+
+if you take some remuneration, you need to put a label containing "remuneration" on the qonto transaction.  
+
+
+go run main.go process.go  
