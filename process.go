@@ -1,7 +1,7 @@
 package main
 
 import (
-	"qonto/api"
+	"qontoEURLApi/api"
 	"strings"
 	"fmt"
 )

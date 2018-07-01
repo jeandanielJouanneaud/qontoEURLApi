@@ -1,11 +1,11 @@
 package main
 
 import (
-	"qonto/api"
 	"fmt"
 	"os"
 	"strings"
 	"strconv"
+	"qontoEURLApi/api"
 )
 
 func main() {
