@@ -26,7 +26,7 @@ func GenerateResult(ps []api.Product, printDetails bool) Result {
 	var vatSales float32 = 0
 	var vatPurchases float32 = 0
 	var amount float32 = 0
-	var vatToSend float32 = 0
+	var vatToSendBack float32 = 0
 	var vatLost float32 = 0
 	var capital float32 = 1000
 	var rémunération float32 = 0
@@ -49,24 +49,24 @@ func GenerateResult(ps []api.Product, printDetails bool) Result {
 	vatPurchases = vatPurchases * -1
 
 	if vatPurchases < vatSales {
-		vatToSend = vatSales - vatPurchases
+		vatToSendBack = vatSales - vatPurchases
 	}else
 	{
-		vatToSend = vatSales
+		vatToSendBack = 0
 		vatLost = vatPurchases - vatSales
 	}
 
 	rémunération = 	rémunération * -1
 	cotisations := rémunération * 0.41
 
-	var finalResult = amount - capital - vatToSend - cotisations
+	var finalResult = amount - capital - vatToSendBack - cotisations
 	récupérable := finalResult / 1.41
 
 
 	if printDetails {
-		fmt.Println("Restant = ", "amount - capital - TVA_A_Rendre - cotisations ", amount, "-", capital, "-", vatToSend,"-", cotisations )
+		fmt.Println("Restant = ", "amount - capital - TVA_A_Rendre - cotisations ", amount, "-", capital, "-", vatToSendBack,"-", cotisations )
 		fmt.Println("Recuperable = ", "Restant / 1.41 ", finalResult, "/", 1.41 )
 	}
 
-	return Result{amount: amount, vat: vat, capital: capital, Rémunération: rémunération, CotisationsAPayer: cotisations, TVA_Achat: vatPurchases, TVA_Ventes: vatSales, TVA_A_Rendre: vatToSend, TVA_Perdue: vatLost, Restant: finalResult, Récupérable: récupérable}
+	return Result{amount: amount, vat: vat, capital: capital, Rémunération: rémunération, CotisationsAPayer: cotisations, TVA_Achat: vatPurchases, TVA_Ventes: vatSales, TVA_A_Rendre: vatToSendBack, TVA_Perdue: vatLost, Restant: finalResult, Récupérable: récupérable}
 }
