@@ -104,7 +104,7 @@ func printUsage() {
 	fmt.Println("-h : help => see this help ")
 	fmt.Println("-v : Verbose => print all details ")
 	fmt.Println("-e : export mode => print all details in export mode (without braces) ")
-	fmt.Println("-p amount,vat[;amount2,vat2] : add some test products")
+	fmt.Println("-p amount,vat[:amount2,vat2] : add some test products")
 	fmt.Println("-r amount : add remuneration")
 	fmt.Println("-d : print process details")
 	fmt.Println("-proxy proxy: set Proxy")
