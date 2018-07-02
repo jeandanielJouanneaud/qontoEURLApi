@@ -27,7 +27,7 @@ func main() {
 
 	if argMap["-proxy"] > 0 {
 		useProxy = true
-		proxy = argsWithoutProg[argMap["-p"]]
+		proxy = argsWithoutProg[argMap["-proxy"]]
 	}
 
 	response := api.RetrieveTransactions(useProxy, proxy)
