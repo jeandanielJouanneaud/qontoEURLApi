@@ -11,6 +11,8 @@ import (
 func main() {
 	argsWithoutProg := os.Args[1:]
 
+	proxy := ""
+	useProxy := false
 	argMap := make(map[string]int)
 	for i := 0; i < len(argsWithoutProg); i +=1 {
 		if argsWithoutProg[i][0] == '-' {
@@ -23,7 +25,12 @@ func main() {
 		os.Exit(0)
 	}
 
-	response := api.RetrieveTransactions()
+	if argMap["-proxy"] > 0 {
+		useProxy = true
+		proxy = argsWithoutProg[argMap["-p"]]
+	}
+
+	response := api.RetrieveTransactions(useProxy, proxy)
 
 	products := response.ToProducts()
 
@@ -100,4 +107,5 @@ func printUsage() {
 	fmt.Println("-p amount,vat[;amount2,vat2] : add some test products")
 	fmt.Println("-r amount : add remuneration")
 	fmt.Println("-d : print process details")
+	fmt.Println("-proxy proxy: set Proxy")
 }
