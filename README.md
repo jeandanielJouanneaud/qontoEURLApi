@@ -8,7 +8,7 @@ Usage :
 	-h : help => see this usage  
 	-v : Verbose => print all details  
 	-e : export mode => print all details in export mode (without braces)  
-	-p amount,vat[;amount2,vat2] : add some test products  
+	-p amount,vat[:amount2,vat2] : add some test products  
 	-r amount : add remuneration  
 	-d : print process details  
   
