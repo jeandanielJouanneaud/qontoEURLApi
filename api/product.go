@@ -18,6 +18,10 @@ func (p Product) ToString() string {
 	return p.Name + " " + strconv.FormatFloat(float64(p.Price), 'f', 2, 32) + " " + strconv.FormatFloat(float64(p.Vat), 'f', 2, 32)
 }
 
+func RetrieveProducts(useProxy bool, proxy string) Products {
+	return RetrieveTransactions(useProxy, proxy).ToProducts()
+}
+
 func (t transaction) ToProduct() Product {
 	signedAmount := t.Amount
 	var signedVat float32 = 0.0

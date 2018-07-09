@@ -6,6 +6,7 @@ import (
 	"strings"
 	"strconv"
 	"qontoEURLApi/api"
+	"qontoEURLApi/process"
 )
 
 func main() {
@@ -30,9 +31,7 @@ func main() {
 		proxy = argsWithoutProg[argMap["-proxy"]]
 	}
 
-	response := api.RetrieveTransactions(useProxy, proxy)
-
-	products := response.ToProducts()
+	products := api.RetrieveProducts(useProxy, proxy)
 
 	if argMap["-p"] > 0 {
 		addTestProducts(&products, argsWithoutProg, argMap)
@@ -43,7 +42,7 @@ func main() {
 	}
 
 	printDetails := argMap["-d"] > 0
-	result := GenerateResult(products, printDetails)
+	result := process.GenerateResult(products, printDetails)
 
 	if argMap["-v"] > 0 {
 		if argMap["-e"] > 0 {
