@@ -41,6 +41,8 @@ func GenerateResult(ps []api.Product, printDetails bool) Result {
 		vat = vat + p.Vat
 		amount = amount + p.Price
 
+		rémunération = rémunération - p.Remuneration
+
 		if strings.Contains(strings.ToLower(p.Name), "remuneration") {
 			rémunération = rémunération + p.Price
 		}

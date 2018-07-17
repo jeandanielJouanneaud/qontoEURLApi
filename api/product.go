@@ -10,6 +10,7 @@ type Product struct {
 	Name string
 	Price float32
 	Vat float32
+	Remuneration float32
 }
 
 type Products []Product
@@ -37,6 +38,19 @@ func (t transaction) ToProduct() Product {
 		}
 	}
 
+	var signedRem float32 = 0.0
+
+	splittedRem := strings.Split(t.Note,"REMUNERATION:")
+
+	if len(splittedRem) > 1 {
+		signedRem64, err := strconv.ParseFloat(splittedRem[1], 32)
+		signedRem = float32(signedRem64)
+		if err != nil {
+			println("ERROR", err)
+			os.Exit(1)
+		}
+	}
+
 	if t.Side == "debit" {
 		signedAmount = signedAmount * -1
 		signedVat = signedVat * -1
@@ -46,7 +60,7 @@ func (t transaction) ToProduct() Product {
 		signedVat = -1.8
 	}
 
-	return Product{Name: t.Label, Price: signedAmount, Vat : signedVat}
+	return Product{Name: t.Label, Price: signedAmount, Vat : signedVat, Remuneration: signedRem}
 }
 
 func (ts transactions) ToProducts() Products {
