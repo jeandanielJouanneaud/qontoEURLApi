@@ -25,6 +25,10 @@ type transaction struct {
 	Status           string
 	Note             string
 	Label            string
+	Reference        string
+	Vat_amount       float32
+	Vat_amountCents  float32
+	Vat_rate         float32
 }
 
 type transactions struct {

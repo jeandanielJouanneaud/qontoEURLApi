@@ -27,23 +27,9 @@ func RetrieveProducts(useProxy bool, proxy string) Products {
 
 func (t transaction) ToProduct() Product {
 	signedAmount := t.Amount
-	var signedVat float32 = 0.0
-
-	splittedNote := strings.Split(t.Note,"TVA:")
-
-	if len(splittedNote) > 1 {
-        splittedFinalNote := strings.Split(splittedNote[1], "\n")[0]
-		signedVat64, err := strconv.ParseFloat(splittedFinalNote, 32)
-		signedVat = float32(signedVat64)
-		if err != nil {
-			println("ERROR", err)
-			os.Exit(1)
-		}
-	}
-
+	
 	var signedRem float32 = 0.0
-
-	splittedRem := strings.Split(t.Note,"REMUNERATION:")
+  	splittedRem := strings.Split(t.Note,"REMUNERATION:")
 
 	if len(splittedRem) > 1 {
         splittedFinalRem := strings.Split(splittedRem[1], "\n")[0]
@@ -57,6 +43,8 @@ func (t transaction) ToProduct() Product {
 	
 	var isImmo bool = len(strings.Split(t.Note,"IMMOBILISATION")) > 1
 
+	var signedVat float32 = t.Vat_amount
+    
 	if t.Side == "debit" {
 		signedAmount = signedAmount * -1
 		signedVat = signedVat * -1
