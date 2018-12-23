@@ -20,6 +20,8 @@ type transaction struct {
 	OperationType    string
 	Currency         string
 	LocalCurrency    string
+ 	Settled_at       string 
+	Emitted_at       string
 	Status           string
 	Note             string
 	Label            string
@@ -58,7 +60,7 @@ func getTransaction(current_page int) *transactions  {
 	defer resp.Body.Close()
 
 	b, _ := ioutil.ReadAll(resp.Body)
-
+ 
 	response := new(transactions)
 	json.Unmarshal(b, response)
 	return response
